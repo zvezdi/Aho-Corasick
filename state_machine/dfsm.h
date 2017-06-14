@@ -10,6 +10,7 @@ typedef struct {
 } dfsm_t;
 
 void initialize_dfsm(dfsm_t* dfsm);
-STATE_ID free_id(dfsm_t* dfsm);
 STATE_ID insert_state(dfsm_t* dfsm);
 void add_transition(dfsm_t*dfsm, STATE_ID from, char symbol, STATE_ID to);
+
+STATE_ID free_id(dfsm_t* dfsm);

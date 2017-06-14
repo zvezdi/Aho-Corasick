@@ -7,10 +7,6 @@ void initialize_dfsm(dfsm_t* dfsm){
   dfsm->states = malloc(dfsm->max_size * sizeof(state_t));
 }
 
-STATE_ID free_id(dfsm_t* dfsm){
-  return dfsm->size;
-}
-
 STATE_ID insert_state(dfsm_t* dfsm){
   if(dfsm->size >= dfsm->max_size){
     dfsm->max_size = 2 * dfsm->size;
@@ -25,5 +21,11 @@ STATE_ID insert_state(dfsm_t* dfsm){
 }
 
 void add_transition(dfsm_t* dfsm, int from_state_id, char symbol, int to_state_id){
-  connect(&dfsm->states[from_state_id], symbol, to_state_id);
+  connect_statess(&dfsm->states[from_state_id], symbol, to_state_id);
+}
+
+//----------kind of private---------
+
+STATE_ID free_id(dfsm_t* dfsm){
+  return dfsm->size;
 }
