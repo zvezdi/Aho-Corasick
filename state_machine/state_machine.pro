@@ -4,4 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 CONFIG += c11
 
-SOURCES += main.c
+SOURCES += main.c \
+    state.c \
+    dfsm.c
+
+DISTFILES +=
+
+HEADERS += \
+    state.h \
+    dfsm.h
