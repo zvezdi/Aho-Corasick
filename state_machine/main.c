@@ -16,9 +16,10 @@ int main(){
   add_transition(&dfsm, state_id2, 'b', state_id1);
   add_transition(&dfsm, state_id1, 'c', state_id3);
   add_transition(&dfsm, state_id2, 'd', state_id3);
-  
+
   state_t state1 = dfsm.states[state_id1];
   state_t state2 = dfsm.states[state_id2];
   state_t state3 = dfsm.states[state_id3];
+  set_final(&state3);
   return 0;
 }

@@ -12,3 +12,7 @@ void initialize_state(state_t* state, int id){
     state->transitions[i] = NULL_STATE;
   }
 }
+
+void set_final(state_t* state){
+  state->final = true;
+}
