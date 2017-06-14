@@ -21,7 +21,7 @@ STATE_ID insert_state(dfsm_t* dfsm){
 }
 
 void add_transition(dfsm_t* dfsm, int from_state_id, char symbol, int to_state_id){
-  connect_statess(&dfsm->states[from_state_id], symbol, to_state_id);
+  connect_states(&dfsm->states[from_state_id], symbol, to_state_id);
 }
 
 //----------kind of private---------
