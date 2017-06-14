@@ -1,6 +1,6 @@
 #include "dfsm.h"
 
-void initialize_dfsm(dfsm_t* dfsm){
+void new_dfsm(dfsm_t* dfsm){
   dfsm->initial_state = 0;
   dfsm->size = 0;
   dfsm->max_size = 2;
@@ -14,13 +14,14 @@ STATE_ID insert_state(dfsm_t* dfsm){
   }
 
   STATE_ID state_id = free_id(dfsm);
-  initialize_state(&dfsm->states[state_id], state_id);
+  new_state(&dfsm->states[state_id], state_id);
   dfsm->size = dfsm->size + 1;
 
   return state_id;
 }
 
 void add_transition(dfsm_t* dfsm, int from_state_id, char symbol, int to_state_id){
+  // if symbol
   connect_states(&dfsm->states[from_state_id], symbol, to_state_id);
 }
 

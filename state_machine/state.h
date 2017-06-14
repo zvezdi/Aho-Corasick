@@ -14,6 +14,6 @@ typedef struct {
 } state_t;
 
 
-void initialize_state(state_t* state, STATE_ID id);
+void new_state(state_t* state, STATE_ID id);
 void connect_states(state_t* from, char symbol, int target_state_id);
 void set_final(state_t* state);

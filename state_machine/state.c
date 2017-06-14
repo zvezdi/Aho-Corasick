@@ -1,6 +1,6 @@
 #include "state.h"
 
-void initialize_state(state_t* state, int id){
+void new_state(state_t* state, int id){
   state->id = id;
   state->final = false;
   // make sure we have correct default data in transitions

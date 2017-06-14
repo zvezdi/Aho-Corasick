@@ -6,10 +6,12 @@ CONFIG += c11
 
 SOURCES += main.c \
     state.c \
-    dfsm.c
+    dfsm.c \
+    trie.c
 
 DISTFILES +=
 
 HEADERS += \
     state.h \
-    dfsm.h
+    dfsm.h \
+    trie.h
