@@ -8,12 +8,12 @@
 
 typedef int STATE_ID;
 typedef struct {
-  int id;
+  int id; //redundant
   bool final;
   int transitions[ALPHABET_SIZE];
 } state_t;
 
 
-void new_state(state_t* state, STATE_ID id);
+void initialize_state(state_t* state, STATE_ID id);
 void connect_states(state_t* from, char symbol, int target_state_id);
 void set_final(state_t* state);
