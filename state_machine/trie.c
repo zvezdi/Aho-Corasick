@@ -1,7 +1,3 @@
-#define _GNU_SOURCE
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "trie.h"
 
 void delta_transitions(dfsm_t* trie, char* word) {
@@ -11,6 +7,7 @@ void delta_transitions(dfsm_t* trie, char* word) {
       break;
     if (!transition_exists(trie, start, word[i])) {
       STATE_ID end = insert_state(trie);
+      set_parent(trie, end, start);
       add_transition(trie, start, word[i], end);
       if (word[i+1] == '\n')
         set_final(&trie->states[end]);

@@ -1,8 +1,10 @@
 #include "state.h"
 
-void initialize_state(state_t* state, int id) {
+void initialize_state(state_t* state, STATE_ID id) {
   state->id = id;
   state->final = false;
+  state->parent_state = NULL_STATE;
+  state->fall_state = NULL_STATE;
   // make sure we have correct default data in transitions
   for (int i = 0; i < ALPHABET_SIZE; i++) {
     state->transitions[i] = NULL_STATE;

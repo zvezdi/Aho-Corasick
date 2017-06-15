@@ -11,6 +11,7 @@ typedef struct {
 
 void initialize_dfsm(dfsm_t* dfsm);
 STATE_ID insert_state(dfsm_t* dfsm);
+void set_parent(dfsm_t* dfsm, STATE_ID state, STATE_ID parent_state);
 void add_transition(dfsm_t*dfsm, STATE_ID from, char symbol, STATE_ID to);
 bool state_exists(dfsm_t* dfsm, STATE_ID state_id);
 bool transition_exists(dfsm_t* dfsm, STATE_ID from, char symbol);

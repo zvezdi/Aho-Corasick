@@ -21,6 +21,10 @@ STATE_ID insert_state(dfsm_t* dfsm) {
   return state_id;
 }
 
+void set_parent(dfsm_t* dfsm, STATE_ID state, STATE_ID parent_state) {
+  dfsm->states[state].parent_state = parent_state;
+}
+
 void add_transition(dfsm_t* dfsm, STATE_ID from, char symbol, STATE_ID to) {
   if (state_exists(dfsm, from) && state_exists(dfsm, to))
     connect_states(&dfsm->states[from], symbol, to);
@@ -37,6 +41,8 @@ bool transition_exists(dfsm_t* dfsm, STATE_ID from, char symbol){
 STATE_ID transit(dfsm_t* dfsm, STATE_ID from, char symbol) {
   return dfsm->states[from].transitions[index_of(symbol)];
 }
+
+
 
 //----------kind of private---------
 
