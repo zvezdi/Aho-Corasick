@@ -1,10 +1,11 @@
 #include "dfsm.h"
 
 void initialize_dfsm(dfsm_t* dfsm) {
-  dfsm->initial_state = 0;
-  dfsm->size = 0;
   dfsm->max_size = 2;
   dfsm->states = malloc(dfsm->max_size * sizeof(state_t));
+  initialize_state(&(dfsm->states[0]), 0);
+  dfsm->initial_state = 0;
+  dfsm->size = 1;
 }
 
 STATE_ID insert_state(dfsm_t* dfsm) {
@@ -25,20 +26,16 @@ void add_transition(dfsm_t* dfsm, STATE_ID from, char symbol, STATE_ID to) {
     connect_states(&dfsm->states[from], symbol, to);
 }
 
-STATE_ID transit(dfsm_t* dfsm, STATE_ID from, char symbol) {
-  return dfsm->states[from].transitions[symbol];
-}
-
-// bool in_alphabet(char symbol){
-//   return (int) symbol > 0 && (int) symbol < ALPHABET_SIZE;
-// }
-
 bool state_exists(dfsm_t* dfsm, STATE_ID state_id){
   return state_id < dfsm->size;
 }
 
 bool transition_exists(dfsm_t* dfsm, STATE_ID from, char symbol){
-  return dfsm->states[from].transitions[symbol] != NULL_STATE;
+  return dfsm->states[from].transitions[index_of(symbol)] != NULL_STATE;
+}
+
+STATE_ID transit(dfsm_t* dfsm, STATE_ID from, char symbol) {
+  return dfsm->states[from].transitions[index_of(symbol)];
 }
 
 //----------kind of private---------

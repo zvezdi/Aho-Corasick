@@ -12,12 +12,15 @@ void delta_transitions(dfsm_t* trie, char* word) {
     if (!transition_exists(trie, start, word[i])) {
       STATE_ID end = insert_state(trie);
       add_transition(trie, start, word[i], end);
+      if (word[i+1] == '\n')
+        set_final(&trie->states[end]);
     }
     start = transit(trie, start, word[i]);
   }
 }
 
 void initialize_trie(char* path_to_dictionary, dfsm_t* trie) {
+  // fill the trie to recognize the words from the dictionary
   initialize_dfsm(trie);
   FILE* file_pointer;
   char* word = NULL;
