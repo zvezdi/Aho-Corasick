@@ -11,8 +11,7 @@ void initialize_queue(queue_t* queue) {
 void push(queue_t* queue, STATE_ID state) {
   if (queue->size >= queue->capacity)
     resize(queue);
-   bool emp = empty(queue);
-   bool me = !empty(queue);
+
   // when size is 0 first and last point to the same empty box and it's usable
   if (! empty(queue))
     queue->last = queue->last + 1;
