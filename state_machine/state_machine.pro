@@ -7,11 +7,13 @@ CONFIG += c11
 SOURCES += main.c \
     state.c \
     dfsm.c \
-    trie.c
+    trie.c \
+    queue.c
 
 DISTFILES +=
 
 HEADERS += \
     state.h \
     dfsm.h \
-    trie.h
+    trie.h \
+    queue.h
