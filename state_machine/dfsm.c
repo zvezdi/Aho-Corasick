@@ -42,7 +42,19 @@ STATE_ID transit(dfsm_t* dfsm, STATE_ID from, char symbol) {
   return dfsm->states[from].transitions[index_of(symbol)];
 }
 
+queue_t* children_states(dfsm_t* dfsm, STATE_ID state){
+  queue_t queue;
+  initialize_queue(&queue);
+  STATE_ID child;
 
+  for (int i = 0; i < ALPHABET_SIZE; i++) {
+    child = dfsm->states[state].transitions[i];
+    if (child != NULL_STATE)
+      push(&queue, child);
+  }
+
+  return &queue;
+}
 
 //----------kind of private---------
 

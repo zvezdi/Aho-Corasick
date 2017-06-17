@@ -1,6 +1,7 @@
 #pragma once
 
 #include "state.h"
+#include "queue.h"
 
 typedef struct {
    STATE_ID initial_state;
@@ -17,3 +18,4 @@ bool state_exists(dfsm_t* dfsm, STATE_ID state_id);
 bool transition_exists(dfsm_t* dfsm, STATE_ID from, char symbol);
 STATE_ID next_free_id(dfsm_t* dfsm);
 STATE_ID transit(dfsm_t* dfsm, STATE_ID from, char symbol);
+queue_t* children_states(dfsm_t* dfsm, STATE_ID state);
