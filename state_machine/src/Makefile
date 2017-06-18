@@ -1,6 +1,6 @@
 IDIR =../include
 CC=gcc
-CFLAGS= -std=gnu99 -g -Wall -Werror -I$(IDIR)
+CFLAGS= -std=gnu99 -g -Wall -Werror -Wextra -I$(IDIR)
 
 ODIR=obj
 

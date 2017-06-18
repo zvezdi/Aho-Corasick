@@ -14,6 +14,7 @@ typedef struct {
    state_t* states;
 } dfsm_t;
 
+dfsm_t* new_dfsm();
 void initialize_dfsm(dfsm_t* dfsm);
 STATE_ID insert_state(dfsm_t* dfsm);
 void set_parent(dfsm_t* dfsm, STATE_ID state, STATE_ID parent_state);

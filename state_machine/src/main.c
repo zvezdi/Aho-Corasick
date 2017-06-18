@@ -44,19 +44,12 @@ bool test_concatinate() {
 }
 
 int main() {
-  dfsm_t trie;
-  initialize_trie("test_dict.txt", &trie);
-
-  // state_t state6 = trie.states[6];
-  // state_t state2 = trie.states[2];
-  // state_t state16 = trie.states[16];
-  // state_t state21 = trie.states[21];
-  // state_t state10 = trie.states[10];
+  // test_concatinate();
+  dfsm_t* trie = build_trie("test_dict.txt");
 //  queue_t children = children_states(trie, 10);
 //  queue_t newcommers;
-  // print(&trie, "output.dot");
 //  bool test = test_concatinate();
-
-  compute_fail_function(&trie);
+  compute_fail_function(trie);
+  print(trie, "output.dot");
   return 0;
 }

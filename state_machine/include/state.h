@@ -18,8 +18,9 @@ typedef struct {
   STATE_ID fall_state;
 } state_t;
 
-
+state_t* new_state(STATE_ID state_id);
 void initialize_state(state_t* state, STATE_ID id);
+void destory_state(state_t* state);
 void connect_states(state_t* from, char symbol, STATE_ID target_state_id);
 void set_back_transition(state_t* target_state, char symbol);
 void set_fall_state(state_t* state, STATE_ID fall_state);

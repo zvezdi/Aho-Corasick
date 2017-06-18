@@ -14,6 +14,11 @@ void initialize_queue(queue_t* queue) {
   queue->data = malloc(queue->capacity * sizeof(STATE_ID));
 }
 
+void destroy_queue(queue_t* queue) {
+  free(queue->data);
+  free(queue);
+}
+
 void enqueue(queue_t* queue, STATE_ID state) {
   if (queue->size >= queue->capacity)
     resize_queue(queue);
@@ -39,9 +44,10 @@ STATE_ID dequeue(queue_t* queue) {
     return queue->data[queue->first];
   }
 
-  queue->first = (queue->first + 1) % queue->size;
+  int first_element_index = queue->first;
+  queue->first = (queue->first + 1) % queue->capacity;
   queue->size = queue->size - 1;
-  return queue->data[queue->first - 1];
+  return queue->data[first_element_index];
 }
 
 bool empty_queue(queue_t* queue) {

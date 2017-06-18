@@ -8,7 +8,7 @@
 #include "queue.h"
 #include "state.h"
 
-void initialize_trie(char* path_to_dictionary, dfsm_t* trie);
+dfsm_t* build_trie(char* path_to_dictionary);
 void compute_fail_function(dfsm_t* trie);
 
 //---kind of private---

@@ -1,5 +1,11 @@
 #include "dfsm.h"
 
+dfsm_t* new_dfsm() {
+  dfsm_t* tmp = malloc(sizeof(dfsm_t));
+  initialize_dfsm(tmp);
+  return tmp;
+}
+
 void initialize_dfsm(dfsm_t* dfsm) {
   dfsm->max_size = 2;
   dfsm->states = malloc(dfsm->max_size * sizeof(state_t));
@@ -45,8 +51,7 @@ STATE_ID transit(dfsm_t* dfsm, STATE_ID from, char symbol) {
 }
 
 queue_t* children_states(dfsm_t* dfsm, STATE_ID state){
-  queue_t* queue;
-  initialize_queue(queue);
+  queue_t* queue = new_queue();
 
   if (!state_exists(dfsm, state))
     return queue;
@@ -73,6 +78,9 @@ void print(dfsm_t* dfsm, char* path_to_file) {
     state_t state = dfsm->states[i];
     if (state.final) {
       fprintf(f, "%d [style=filled, color=\"0.1 0.8 0.8\"];\n", state.id);
+    }
+    if (state.fall_state != 0) {
+      fprintf(f, "%d -> %d [color=\"0.1 0.5 0.8\", label=\"fall\"];\n", state.id, state.fall_state );
     }
     for(int j = 0; j < ALPHABET_SIZE; j++) {
       if (state.transitions[j] != NULL_STATE) {

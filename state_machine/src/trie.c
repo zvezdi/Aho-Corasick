@@ -1,24 +1,28 @@
 #include "trie.h"
 
-void initialize_trie(char* path_to_dictionary, dfsm_t* trie) {
+void create_transitions_for(dfsm_t* trie, char* word);
+STATE_ID find_fall_state(dfsm_t* trie, STATE_ID state);
+
+dfsm_t* build_trie(char* path_to_dictionary) {
   // fill the trie to recognize the words from the dictionary
-  initialize_dfsm(trie);
   FILE* file_pointer;
   char* word = NULL;
   size_t word_length = 0;
   ssize_t read_symbols;
 
   file_pointer = fopen(path_to_dictionary, "r");
-  if (file_pointer == NULL)
-      exit(EXIT_FAILURE);
+  if (!file_pointer)
+    exit(EXIT_FAILURE);
 
+  dfsm_t* trie = new_dfsm();
   while ((read_symbols = getline(&word, &word_length, file_pointer)) != -1) {
-      create_transitions_for(trie, word);
+    create_transitions_for(trie, word);
   }
 
   fclose(file_pointer);
-  if (word)
-      free(word);
+  free(word);
+  
+  return trie;
 }
 
 void compute_fail_function(dfsm_t* trie) {
@@ -34,7 +38,7 @@ void compute_fail_function(dfsm_t* trie) {
     STATE_ID current_state = dequeue(&states_to_process);
     queue_t* children = children_states(trie, current_state);
     concatinate_queues(&states_to_process, children);
-
+    destroy_queue(children);
     STATE_ID fall_state = find_fall_state(trie, current_state);
     print_queue(&states_to_process);
     set_fall_state(&(trie->states[current_state]), fall_state);
