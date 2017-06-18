@@ -8,12 +8,12 @@ void initialize_queue(queue_t* queue) {
   queue->data = malloc(queue->capacity * sizeof(STATE_ID));
 }
 
-void push(queue_t* queue, STATE_ID state) {
+void enqueue(queue_t* queue, STATE_ID state) {
   if (queue->size >= queue->capacity)
-    resize(queue);
+    resize_queue(queue);
 
   // when size is 0 first and last point to the same empty box and it's usable
-  if (! empty(queue))
+  if (! empty_queue(queue))
     queue->last = queue->last + 1;
 
   if (queue->last >= queue->capacity)
@@ -24,8 +24,8 @@ void push(queue_t* queue, STATE_ID state) {
   queue->size = queue->size + 1;
 }
 
-STATE_ID pop(queue_t* queue) {
-  if (empty(queue))
+STATE_ID dequeue(queue_t* queue) {
+  if (empty_queue(queue))
     return NULL_STATE;
 
   if (queue->first == queue->last) {
@@ -38,9 +38,34 @@ STATE_ID pop(queue_t* queue) {
   return queue->data[queue->first - 1];
 }
 
+bool empty_queue(queue_t* queue) {
+  return queue->size == 0;
+}
+
+void concatinate_queues(queue_t* base_queue, queue_t* newcommers) {
+  while(!empty_queue(newcommers)) {
+    STATE_ID newcome = dequeue(newcommers);
+    enqueue(base_queue, newcome);
+  }
+}
+
+void print_queue(queue_t* queue) {
+    FILE *f = fopen("queue.dot", "w");
+    if (f == NULL)
+    {
+        printf("Error opening file!\n");
+        exit(1);
+    }
+    for(int i = 0; i < queue->size; i++) {
+      fprintf(f, "%d, ", queue->data[queue->first + i]);
+    }
+    // 1 -> 3 [label="a"];
+    fclose(f);
+}
+
 //--------kind of private-----------
 
-void resize(queue_t* queue) {
+void resize_queue(queue_t* queue) {
   queue->capacity = 2 * queue->capacity;
   // reallocate place for the data array
   // and allign the queue starting point index with the beggining of the new array
@@ -55,8 +80,4 @@ void resize(queue_t* queue) {
   // make sure the structure stays correct
   queue->first = 0;
   queue->last = queue->size - 1; //because it's an index
-}
-
-bool empty(queue_t* queue) {
-  return queue->size == 0;
 }

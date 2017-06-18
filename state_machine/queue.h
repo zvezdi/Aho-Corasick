@@ -1,5 +1,9 @@
 #pragma once
 
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "state.h"
 
 typedef struct {
@@ -10,9 +14,12 @@ typedef struct {
   int last;
 } queue_t;
 
-void push(queue_t* queue, STATE_ID state);
-STATE_ID pop(queue_t* queue);
+void initialize_queue(queue_t* queue);
+void enqueue(queue_t* queue, STATE_ID state);
+STATE_ID dequeue(queue_t* queue);
+bool empty_queue(queue_t* queue);
+void concatinate_queues(queue_t* base_queue, queue_t* newcommers);
+void print_queue(queue_t* queue);
 
 //private
-void resize(queue_t* queue);
-bool empty(queue_t* queue);
+void resize_queue(queue_t* queue);
