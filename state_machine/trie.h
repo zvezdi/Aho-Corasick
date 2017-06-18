@@ -5,6 +5,13 @@
 #include <stdlib.h>
 
 #include "dfsm.h"
+#include "queue.h"
+#include "state.h"
 
 void initialize_trie(char* path_to_dictionary, dfsm_t* trie);
-void delta_transitions(dfsm_t* trie, char* word);
+void compute_fail_function(dfsm_t* trie);
+
+//---kind of private---
+
+void create_transitions_for(dfsm_t* trie, char* word);
+STATE_ID find_fall_state(dfsm_t* trie, STATE_ID state);
