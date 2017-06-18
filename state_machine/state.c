@@ -15,6 +15,14 @@ void connect_states(state_t* from_state, char symbol, STATE_ID target_state_id) 
   from_state->transitions[index_of(symbol)] = target_state_id;
 }
 
+void set_back_transition(state_t* target_state, char symbol){
+  target_state->backwords_symbol = symbol;
+}
+
+void set_fall_state(state_t* state, STATE_ID fall_state) {
+  state->fall_state = fall_state;
+}
+
 void set_final(state_t* state) {
   state->final = true;
 }
