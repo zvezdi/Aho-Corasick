@@ -1,5 +1,9 @@
 #pragma once
 
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "state.h"
 #include "queue.h"
 
@@ -18,4 +22,5 @@ bool state_exists(dfsm_t* dfsm, STATE_ID state_id);
 bool transition_exists(dfsm_t* dfsm, STATE_ID from, char symbol);
 STATE_ID next_free_id(dfsm_t* dfsm);
 STATE_ID transit(dfsm_t* dfsm, STATE_ID from, char symbol);
-queue_t* children_states(dfsm_t* dfsm, STATE_ID state);
+queue_t children_states(dfsm_t* dfsm, STATE_ID state);
+void print(dfsm_t* dfsm, char* path_to_file);
