@@ -1,2 +1,6 @@
 *.pro.user
 *.txt
+*.dot
+*.svg
+*.out
+*.vscode

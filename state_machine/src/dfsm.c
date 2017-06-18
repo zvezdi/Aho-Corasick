@@ -44,9 +44,9 @@ STATE_ID transit(dfsm_t* dfsm, STATE_ID from, char symbol) {
   return dfsm->states[from].transitions[index_of(symbol)];
 }
 
-queue_t children_states(dfsm_t* dfsm, STATE_ID state){
-  queue_t queue;
-  initialize_queue(&queue);
+queue_t* children_states(dfsm_t* dfsm, STATE_ID state){
+  queue_t* queue;
+  initialize_queue(queue);
 
   if (!state_exists(dfsm, state))
     return queue;
@@ -54,7 +54,7 @@ queue_t children_states(dfsm_t* dfsm, STATE_ID state){
   for (int i = 0; i < ALPHABET_SIZE; i++) {
     if (dfsm->states[state].transitions[i] != NULL_STATE) {
       STATE_ID child = dfsm->states[state].transitions[i];
-      enqueue(&queue, child);
+      enqueue(queue, child);
     }
   }
   return queue;

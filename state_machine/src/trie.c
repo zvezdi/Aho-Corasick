@@ -32,8 +32,8 @@ void compute_fail_function(dfsm_t* trie) {
   // find fall state iteratively using bfs to traverse the trie
   while (!empty_queue(&states_to_process)) {
     STATE_ID current_state = dequeue(&states_to_process);
-    queue_t children = children_states(trie, current_state);
-    concatinate_queues(&states_to_process, &children);
+    queue_t* children = children_states(trie, current_state);
+    concatinate_queues(&states_to_process, children);
 
     STATE_ID fall_state = find_fall_state(trie, current_state);
     print_queue(&states_to_process);

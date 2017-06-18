@@ -1,5 +1,11 @@
 #include "queue.h"
 
+queue_t* new_queue(){
+  queue_t* tmp = malloc(sizeof(queue_t));
+  initialize_queue(tmp);
+  return tmp;
+}
+
 void initialize_queue(queue_t* queue) {
   queue->size = 0;
   queue->capacity = 2;
@@ -33,7 +39,7 @@ STATE_ID dequeue(queue_t* queue) {
     return queue->data[queue->first];
   }
 
-  queue->first = queue->first + 1;
+  queue->first = (queue->first + 1) % queue->size;
   queue->size = queue->size - 1;
   return queue->data[queue->first - 1];
 }
