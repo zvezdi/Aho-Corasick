@@ -46,10 +46,8 @@ bool test_concatinate() {
 int main() {
   // test_concatinate();
   dfsm_t* trie = build_trie("test_dict.txt");
-//  queue_t children = children_states(trie, 10);
-//  queue_t newcommers;
-//  bool test = test_concatinate();
   compute_fail_function(trie);
+  
   print(trie, "output.dot");
   return 0;
 }

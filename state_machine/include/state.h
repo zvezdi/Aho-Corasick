@@ -26,3 +26,4 @@ void set_back_transition(state_t* target_state, char symbol);
 void set_fall_state(state_t* state, STATE_ID fall_state);
 void set_final(state_t* state);
 int index_of(char symbol);
+char char_at_index(int index);

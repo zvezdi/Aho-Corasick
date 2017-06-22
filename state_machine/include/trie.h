@@ -15,3 +15,6 @@ void compute_fail_function(dfsm_t* trie);
 
 void create_transitions_for(dfsm_t* trie, char* word);
 STATE_ID find_fall_state(dfsm_t* trie, STATE_ID state);
+void set_fail_transitions(dfsm_t* trie, STATE_ID current_state);
+void compute_fail_function(dfsm_t* trie);
+void compute_fallback_states(dfsm_t* trie);

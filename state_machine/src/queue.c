@@ -61,19 +61,6 @@ void concatinate_queues(queue_t* base_queue, queue_t* newcommers) {
   }
 }
 
-void print_queue(queue_t* queue) {
-    FILE *f = fopen("queue.dot", "w");
-    if (f == NULL)
-    {
-        printf("Error opening file!\n");
-        exit(1);
-    }
-    for(int i = 0; i < queue->size; i++) {
-      fprintf(f, "%d, ", queue->data[queue->first + i]);
-    }
-    // 1 -> 3 [label="a"];
-    fclose(f);
-}
 
 //--------kind of private-----------
 

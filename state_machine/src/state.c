@@ -31,6 +31,10 @@ int index_of(char symbol) {
   return (int) symbol - 32;
 }
 
+char char_at_index(int index) {
+  return (char) index + 32;
+}
+
 void initialize_state(state_t* state, STATE_ID id) {
   state->id = id;
   state->final = false;
