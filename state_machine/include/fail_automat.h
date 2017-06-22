@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "dfsm.h"
+#include "trie.h"
 #include "queue.h"
 #include "state.h"
 
-dfsm_t* build_trie(char* path_to_dictionary);
+void compute_fail_function(dfsm_t* trie);

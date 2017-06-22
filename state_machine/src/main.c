@@ -6,6 +6,7 @@
 #include "dfsm.h"
 #include "trie.h"
 #include "queue.h"
+#include "fail_automat.h"
 
 bool test_concatinate() {
   queue_t base;

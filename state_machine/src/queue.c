@@ -1,5 +1,7 @@
 #include "queue.h"
 
+void resize_queue(queue_t* queue);
+
 queue_t* new_queue(){
   queue_t* tmp = malloc(sizeof(queue_t));
   initialize_queue(tmp);
