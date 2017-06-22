@@ -1,1 +1,1 @@
-dot -Goverlap=prism -Tsvg output.dot -o dfsm.svg
+dot -Goverlap=prism -Tsvg $1 -o $1.svg
