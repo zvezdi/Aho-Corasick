@@ -7,6 +7,7 @@
 #include "trie.h"
 #include "queue.h"
 #include "fail_automat.h"
+#include "minimisation.h"
 
 bool test_concatinate() {
   queue_t base;
@@ -48,7 +49,22 @@ int main() {
   // test_concatinate();
   dfsm_t* trie = build_trie("test_dict.txt");
   compute_fail_function(trie);
+  fill_incoming_states(trie);
+  // print_incoming_transitions(trie);
+  // print(trie, "output.dot");
+
+
+  darray_t* arr = darray_new();
+  darray_add(arr, 1);
+  darray_add(arr, 2);
+  darray_add(arr, 3);
+  darray_add(arr, 4);
+  darray_add(arr, 5);
+  darray_add(arr, 6);
+  darray_add(arr, 7);
+  darray_add(arr, 8);
+  darray_add(arr, 9);
+  darray_add(arr, 10);
   
-  print(trie, "output.dot");
   return 0;
 }
