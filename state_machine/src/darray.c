@@ -1,7 +1,5 @@
 #include "darray.h"
 
-#include <stdlib.h>
-
 void darray_resize(darray_t* darray);
 void darray_initialize(darray_t* darray);
 
@@ -33,5 +31,5 @@ void darray_initialize(darray_t* darray) {
 
 void darray_resize(darray_t* darray){
   darray->capacity *= 2;
-  darray->data = realloc(darray, darray->capacity * sizeof(int));
+  darray->data = realloc(darray->data, darray->capacity * sizeof(int));
 }

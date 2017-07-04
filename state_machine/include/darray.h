@@ -1,5 +1,9 @@
 #pragma once
 
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct {
   int* data;
   int size;
